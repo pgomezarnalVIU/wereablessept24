@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Imc</string>
+    <string name="txt_peso">Introduce Peso (Kg)</string>
+</resources>
