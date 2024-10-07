@@ -51,6 +51,7 @@ android {
 
 dependencies {
     val lifecycle_version = "2.8.5"
+    val nav_version = "2.8.0"
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -70,4 +71,8 @@ dependencies {
 
     // ViewModel utilities for Compose
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version")
+    // Jetpack Compose integration
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+    //Iconos extendidos
+    implementation("androidx.compose.material:material-icons-extended")
 }
