@@ -13,9 +13,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.animedb.screens.AnimeCard
 import com.example.animedb.screens.ListAnime
 import com.example.animedb.ui.theme.AnimeDBTheme
@@ -49,9 +51,23 @@ class MainActivity : ComponentActivity() {
                             ListAnime(navController,animesVM);
                         }
                         //Configuramos la ruta hacia el add/edit
-                        composable(Screen.AddEditAnimeScreen.ruta) {
+                        composable(route=Screen.AddEditAnimeScreen.ruta+"?animeId={animeId}",
+                            arguments = listOf(
+                                navArgument(name = "animeId"){
+                                    type = NavType.IntType
+                                    defaultValue = -1
+                                }
+                            )
+                        ) {
+                            //Recojo los parametros enviados
+                            navBackStackEntry ->
+                            //Recojo los parametros enviados
+                            //Recojo el parametro animeId
+                            val animeId = navBackStackEntry.arguments?.getInt("animeId") ?: -1
                             //Creamos nuestro Viewmodel
-                            val animeVM = viewModel<AddEditAnimeViewModel>()
+                            val animeVM = viewModel<AddEditAnimeViewModel>(){
+                                AddEditAnimeViewModel(animeId)
+                            }
                             //Lista de Animes
                             AddEditAnime(navController,animeVM);
                         }

@@ -4,9 +4,13 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.animedb.data.Anime
 
 import com.example.animedb.data.animes
+import com.example.animedb.data.getAnimes
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 class ListAnimeViewModel:ViewModel() {
 
@@ -17,8 +21,13 @@ class ListAnimeViewModel:ViewModel() {
     var animesVM: State<List<Anime>> = _animes
 
     init{
+        //Capturar los datos desde elflujo de datos
+        getAnimes().onEach {
+            _animes.value=animes
+        }.launchIn(viewModelScope)
+
         //Cargar los datos
-        _animes.value = animes
+        //_animes.value = animes
     }
 
     //Funcion de borrado

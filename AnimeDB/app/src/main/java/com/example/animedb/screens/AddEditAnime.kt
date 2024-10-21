@@ -29,7 +29,6 @@ import com.example.animedb.components.HorizontalTextRadioButton
 import com.example.animedb.data.AnimeType
 import com.example.animedb.viewmodel.AddEditAnimeViewModel
 
-//import com.example.animedb.viewmodel.AddEditAnimeViewModel
 
 @Composable
 fun AddEditAnime(
@@ -40,7 +39,7 @@ fun AddEditAnime(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    //viewModel.addEditAnime()
+                    viewModel.saveAnime()
                     navController.navigate(Screen.AnimeListScreen.ruta)
                 }
             )

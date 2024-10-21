@@ -72,7 +72,7 @@ fun ListAnime(navController: NavController, animesVM: ListAnimeViewModel){
                 //Recoger datos del ViewModel
                 animesVM.animesVM.value.forEach { anime ->
                     item {
-                        AnimeCard(anime) {
+                        AnimeCard(navController,anime) {
                             //Borrado de elemento
                             println("He borranod el anime")
                             //animes.remove(anime)

@@ -7,8 +7,10 @@ import androidx.compose.runtime.State
 import androidx.lifecycle.ViewModel
 import com.example.animedb.data.Anime
 import com.example.animedb.data.AnimeType
+import com.example.animedb.data.addEditAnime
+import com.example.animedb.data.getAnime
 
-class AddEditAnimeViewModel : ViewModel() {
+class AddEditAnimeViewModel(animeId:Int) : ViewModel() {
 
     //Variable en memoria que almacene la información de la lista de libros
     private val _anime = mutableStateOf(Anime())
@@ -16,7 +18,7 @@ class AddEditAnimeViewModel : ViewModel() {
     var anime: State<Anime> = _anime
 
     init{
-        //_anime.value = getAnime(animeId)
+        _anime.value = getAnime(animeId)
     }
 
     fun addCreador(creador:String){
@@ -30,4 +32,9 @@ class AddEditAnimeViewModel : ViewModel() {
     fun setType(type:AnimeType){
         _anime.value = _anime.value.copy(animeType = type)
     }
+
+    fun saveAnime(){
+        addEditAnime(_anime.value)
+    }
+
 }

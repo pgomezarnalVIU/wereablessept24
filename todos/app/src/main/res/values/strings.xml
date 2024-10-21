@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Todos</string>
+    <string name="greeting">Hello</string>
+    <string name="delete">Delete</string>
+    <string name="main_heading">Todos</string>
+    <string name="add_edit_todo" translatable="false">Add/Edit Todo</string>
+</resources>

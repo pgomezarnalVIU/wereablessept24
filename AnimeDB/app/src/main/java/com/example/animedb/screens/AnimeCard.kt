@@ -2,6 +2,7 @@ package com.example.animedb.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Box
@@ -26,15 +27,21 @@ import androidx.compose.ui.text.font.FontVariation.width
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.animedb.data.Anime
 
 //Interface para mostrar un listado de animes
 @Composable
-fun AnimeCard(anime: Anime, onDeleteClick: (Anime)->Unit) {
+fun AnimeCard(navController: NavController, anime: Anime, onDeleteClick: (Anime)->Unit) {
     Box(
         modifier = Modifier
             .background(color=anime.animeType.backgroundColor, shape = RoundedCornerShape(5.dp))
             .fillMaxSize()
+            //Hacer clickable todo el componente
+            //Necesitaremos pasar el id para que lo reciba el AddEditAnime
+            .clickable {
+                navController.navigate(Screen.AddEditAnimeScreen.ruta+"?animeId=${anime.id}")
+            }
     ){
         Column{
             //TITULO DE NUESTRO ANIME
