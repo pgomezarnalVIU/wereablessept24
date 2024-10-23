@@ -47,7 +47,7 @@ class AddEditMusicViewModelTest {
     }
 
     @Test
-    fun `anyadir song nueva`() =
+    fun `anyadir song nueva test`() =
         runTest {
             addEditMusicViewModel.onEvent(AddEditMusicEvent.EnteredTitle("Titulo de prueba"))
             addEditMusicViewModel.onEvent(AddEditMusicEvent.EnteredGroup("Grupo de prueba"))
