@@ -5,10 +5,10 @@ class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
   @override
-  State<SettingsScreen> createState() => _MyWidgetState();
+  State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
-class _MyWidgetState extends State<SettingsScreen> {
+class _SettingsScreenState extends State<SettingsScreen> {
   final TextEditingController txtName = TextEditingController();
   final List<String> _images = ['Lake', 'Mountain', 'Sea', 'Country'];
   String _selectedImage = 'Lake';
@@ -23,7 +23,9 @@ class _MyWidgetState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Settings")),
+      appBar: AppBar(
+        title: const Text('Settings'),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -50,8 +52,8 @@ class _MyWidgetState extends State<SettingsScreen> {
         onPressed: () {
           saveSettings().then((value) {
             String message = value
-                ? 'Las configuraciones se han salvado'
-                : 'Error: Las configuraciones no se han salvado';
+                ? 'Los settings se han guardado'
+                : 'Los settings no se han guardado';
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(message),
               duration: const Duration(seconds: 3),
@@ -71,6 +73,8 @@ class _MyWidgetState extends State<SettingsScreen> {
     Map<String, String> settings = await helper.getSettings();
     _selectedImage = settings['image'] ?? 'Lake';
     txtName.text = settings['name'] ?? '';
+    _selectedImage = (_selectedImage == "") ? 'Lake' : _selectedImage;
+    txtName.text = (txtName.text == "") ? 'Desconocido' : txtName.text;
     setState(() {});
   }
 
