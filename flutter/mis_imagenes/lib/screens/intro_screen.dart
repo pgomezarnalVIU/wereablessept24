@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:mis_imagenes/data/sp_helper.dart";
+import "package:mis_imagenes/screens/quote_screen.dart";
 import "package:mis_imagenes/screens/settings_screen.dart";
 
 class IntroScreen extends StatefulWidget {
@@ -49,8 +50,7 @@ class _IntroScreenState extends State<IntroScreen> {
             child: ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (BuildContext contenxt) =>
-                          const SettingsScreen()));
+                      builder: (BuildContext contenxt) => const QuoteScreen()));
                 },
                 child: const Text('EMPEZAR')),
           )
