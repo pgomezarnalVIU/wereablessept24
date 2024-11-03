@@ -24,7 +24,8 @@ class _MyWidgetState extends State<SettingsScreen> {
           children: [
             TextField(
               controller: txtName,
-              decoration: const InputDecoration(hintText: 'Enter your name'),
+              decoration:
+                  const InputDecoration(hintText: 'Introduce tu nombre'),
             ),
             DropdownButton<String>(
                 value: _selectedImage,
@@ -39,6 +40,24 @@ class _MyWidgetState extends State<SettingsScreen> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          saveSettings().then((value) {
+            String message = value
+                ? 'Las configuraciones se han salvado'
+                : 'Error: Las configuraciones no se han salvado';
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(message),
+              duration: const Duration(seconds: 3),
+            ));
+          });
+        },
+        child: const Icon(Icons.save),
+      ),
     );
+  }
+
+  Future<bool> saveSettings() async {
+    return await helper.setSettings(txtName.text, _selectedImage);
   }
 }
