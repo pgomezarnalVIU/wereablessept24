@@ -15,6 +15,12 @@ class _MyWidgetState extends State<SettingsScreen> {
   final SPHelper helper = SPHelper();
 
   @override
+  void initState() {
+    super.initState();
+    getSettings();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Settings")),
@@ -59,5 +65,18 @@ class _MyWidgetState extends State<SettingsScreen> {
 
   Future<bool> saveSettings() async {
     return await helper.setSettings(txtName.text, _selectedImage);
+  }
+
+  Future<void> getSettings() async {
+    Map<String, String> settings = await helper.getSettings();
+    _selectedImage = settings['image'] ?? 'Lake';
+    txtName.text = settings['name'] ?? '';
+    setState(() {});
+  }
+
+  @override
+  void dispose() {
+    txtName.dispose();
+    super.dispose();
   }
 }
